@@ -35,6 +35,7 @@ function App() {
 
   return (
     <div className="app">
+      <div className="animated-bg"></div>
       <Navbar activeSection={activeSection} />
       <Hero />
       <About />
