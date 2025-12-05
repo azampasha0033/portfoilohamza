@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Hamza Saleemi - Senior Full Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --bg-light: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(125deg, var(--bg-darker) 0%, var(--bg-dark) 50%, var(--bg-darker) 100%);
+        }
+
+        .animated-bg::before,
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .animated-bg::before {
+            background: var(--primary);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .animated-bg::after {
+            background: var(--accent);
+            bottom: -200px;
+            right: -200px;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(100px, -100px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-100px, 100px) scale(0.9);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1.5rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 4rem;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero-text p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .profile-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 4px;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .profile-img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--bg-dark);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.125rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+        }
+
+        .stat-card h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Section */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            grid-column: 1;
+            text-align: right;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            border: 4px solid var(--bg-darker);
+            z-index: 1;
+        }
+
+        .timeline-content {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .timeline-content .company {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .timeline-content p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .timeline-date {
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            overflow: hidden;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 30px 80px rgba(99, 102, 241, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-light);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.15);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-content {
+            padding: 2.5rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .project-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.5rem 1.25rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--primary);
+            font-family: 'Fira Code', monospace;
+            font-weight: 500;
+        }
+
+        .project-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            color: var(--accent);
+            gap: 1rem;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .skill-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+        }
+
+        .skill-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 1rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 500;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-icon {
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--success);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .profile-container {
+                width: 300px;
+                height: 300px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-date {
+                grid-column: 1;
+                text-align: left;
+            }
+
+            .timeline-dot {
+                left: 0;
+                transform: translateX(-50%);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">MHS</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content animate">
+                <div class="hero-text">
+                    <h1>
+                        Hi, I'm <br>
+                        <span class="gradient-text">Muhammad Hamza Saleemi</span>
+                    </h1>
+                    <div class="subtitle">Senior Full Stack Developer</div>
+                    <p>
+                        Specialized in WordPress theme development, Shopify customizations, and building
+                        enterprise-level web solutions at Grafdom. Transforming complex designs into
+                        pixel-perfect, high-performance digital experiences.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            View My Work
+                            <span>→</span>
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            Let's Connect
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-container">
+                        <div class="profile-ring"></div>
+                        <div class="profile-img">
+                            <img src="profile.jpg" alt="Muhammad Hamza Saleemi">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card animate" style="animation-delay: 0.1s;">
+                    <h3>4+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-card animate" style="animation-delay: 0.2s;">
+                    <h3>100+</h3>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat-card animate" style="animation-delay: 0.3s;">
+                    <h3>50+</h3>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="stat-card animate" style="animation-delay: 0.4s;">
+                    <h3>15+</h3>
+                    <p>Technologies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="gradient-text">Professional Experience</h2>
+                <p>My journey in building exceptional digital solutions</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Senior Full Stack Developer</h3>
+                        <span class="company">Grafdom - Current</span>
+                        <p>
+                            Leading WordPress and Shopify development projects for international clients.
+                            Specialized in custom theme development, converting HTML designs to WordPress,
+                            and building complex e-commerce solutions. Successfully delivered 30+ enterprise
+                            projects including Byrne Equipment Rental, Spacemaker, and Byrne Technical Services.
+                        </p>
+                    </div>
+                    <div class="timeline-date">
+                        <span>2023 - Present</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>WordPress Plugin Developer</h3>
+                        <span class="company">DialogPay</span>
+                        <p>
+                            Developed the DialogPay Payment Gateway plugin for WooCommerce, integrating multiple
+                            payment methods including Apple Pay, Google Pay, and WhatsApp Commerce. Published on
+                            WordPress.org with active installations and positive reviews.
+                        </p>
+                    </div>
+                    <div class="timeline-date">
+                        <span>2024</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Full Stack PHP Developer</h3>
+                        <span class="company">CutSoft Technologies</span>
+                        <p>
+                            Developed custom POS systems, inventory management solutions, and web applications
+                            for retail and restaurant businesses. Built scalable PHP applications with MySQL
+                            databases and implemented REST APIs for mobile app integration.
+                        </p>
+                    </div>
+                    <div class="timeline-date">
+                        <span>2021 - 2023</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Junior Web Developer</h3>
+                        <span class="company">Freelance</span>
+                        <p>
+                            Started my development journey building custom websites, e-commerce platforms,
+                            and business management systems. Gained expertise in PHP, MySQL, JavaScript,
+                            and modern web development practices.
+                        </p>
+                    </div>
+                    <div class="timeline-date">
+                        <span>2020 - 2021</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="gradient-text">Featured Projects</h2>
+                <p>Showcasing my best work in WordPress, Shopify, and custom development</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Byrne Equipment Rental -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="byrne-rental-real.png" alt="Byrne Equipment Rental">
+                        <div class="project-badge">WordPress Theme</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Byrne Equipment Rental</h3>
+                        <p>
+                            Custom WordPress theme for the Middle East's largest equipment rental company.
+                            Converted HTML designs to a fully functional, responsive WordPress theme with
+                            advanced features including equipment catalog, rental booking system, and
+                            multi-location support.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">Custom Theme</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">ACF Pro</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <a href="https://byrnerental.com/" target="_blank" class="project-link">
+                            Visit Website →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Spacemaker -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="spacemaker-real.png" alt="Spacemaker UAE">
+                        <div class="project-badge">WordPress Theme</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Spacemaker UAE</h3>
+                        <p>
+                            Modern WordPress theme for a modular building solutions company. Features include
+                            custom post types for solutions showcase, advanced filtering system, project gallery,
+                            and integration with business management systems.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">Custom Theme</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">jQuery</span>
+                        </div>
+                        <a href="https://spacemaker.ae/" target="_blank" class="project-link">
+                            Visit Website →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- DialogPay Plugin -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="dialogpay.png" alt="DialogPay Payment Gateway">
+                        <div class="project-badge">WordPress Plugin</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>DialogPay Payment Gateway</h3>
+                        <p>
+                            Comprehensive WooCommerce payment gateway plugin supporting multiple payment methods.
+                            Integrated Apple Pay, Google Pay, credit cards, and WhatsApp Commerce. Published on
+                            WordPress.org with active installations and 5-star reviews.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">WooCommerce</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">Payment APIs</span>
+                            <span class="tech-tag">WhatsApp API</span>
+                        </div>
+                        <a href="https://wordpress.org/plugins/dialogpay-payment-gateway-for-woocommerce/"
+                            target="_blank" class="project-link">
+                            View on WordPress.org →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Byrne Technical Services -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="byrne-technical-real.png" alt="Byrne Technical Services">
+                        <div class="project-badge">WordPress Theme</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Byrne Technical Services</h3>
+                        <p>
+                            Complete WordPress theme development from HTML mockups for technical services company.
+                            Implemented responsive design, custom post types, solutions showcase, and advanced
+                            functionality for service management.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">HTML to WP</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">Responsive Design</span>
+                        </div>
+                        <a href="https://byrnetechnical.com/" target="_blank" class="project-link">
+                            Visit Website →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- POS System -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="pos-system.png" alt="Custom POS System">
+                        <div class="project-badge">Custom Software</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Custom POS Systems</h3>
+                        <p>
+                            Developed multiple Point of Sale systems for retail and restaurant businesses.
+                            Features include real-time inventory management, sales tracking, multi-user support,
+                            detailed reporting, and payment gateway integration.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Bootstrap</span>
+                            <span class="tech-tag">REST API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Cart System -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="food-cart.png" alt="Food Ordering System">
+                        <div class="project-badge">Web Application</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Food Ordering & Cart System</h3>
+                        <p>
+                            Complete food ordering platform with shopping cart, order management, and delivery
+                            tracking. Integrated multiple payment gateways, real-time order updates, and
+                            customer management system.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">jQuery</span>
+                            <span class="tech-tag">Payment Gateway</span>
+                            <span class="tech-tag">Real-time Updates</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="gradient-text">Skills & Expertise</h2>
+                <p>Technologies and tools I use to build exceptional digital experiences</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>WordPress Development</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-icon"></span>Custom Theme Development</li>
+                        <li><span class="skill-icon"></span>Plugin Development</li>
+                        <li><span class="skill-icon"></span>WooCommerce Customization</li>
+                        <li><span class="skill-icon"></span>Elementor Development</li>
+                        <li><span class="skill-icon"></span>ACF & Custom Fields</li>
+                        <li><span class="skill-icon"></span>HTML to WordPress Conversion</li>
+                        <li><span class="skill-icon"></span>WordPress REST API</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Shopify Development</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-icon"></span>Theme Customization</li>
+                        <li><span class="skill-icon"></span>Liquid Template Engine</li>
+                        <li><span class="skill-icon"></span>Shopify Apps Development</li>
+                        <li><span class="skill-icon"></span>Store Setup & Migration</li>
+                        <li><span class="skill-icon"></span>Payment Gateway Integration</li>
+                        <li><span class="skill-icon"></span>Shopify API Integration</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Core Technologies</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-icon"></span>PHP (Expert Level)</li>
+                        <li><span class="skill-icon"></span>JavaScript / jQuery</li>
+                        <li><span class="skill-icon"></span>React.js</li>
+                        <li><span class="skill-icon"></span>MySQL Database</li>
+                        <li><span class="skill-icon"></span>HTML5 & CSS3</li>
+                        <li><span class="skill-icon"></span>Bootstrap & Tailwind CSS</li>
+                        <li><span class="skill-icon"></span>Git Version Control</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Additional Expertise</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-icon"></span>POS System Development</li>
+                        <li><span class="skill-icon"></span>PWA Development</li>
+                        <li><span class="skill-icon"></span>REST API Development</li>
+                        <li><span class="skill-icon"></span>Payment Gateway Integration</li>
+                        <li><span class="skill-icon"></span>WhatsApp API Integration</li>
+                        <li><span class="skill-icon"></span>E-commerce Solutions</li>
+                        <li><span class="skill-icon"></span>Performance Optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="gradient-text">Let's Work Together</h2>
+                <p>Currently at Grafdom - Available for freelance projects</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:muhammadhamzasaleemi5@gmail.com">muhammadhamzasaleemi5@gmail.com</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Phone</h3>
+                    <a href="tel:+923090230074">+92 309 0230074</a><br>
+                    <a href="tel:+923117476361">+92 311 7476361</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/muhammadhamzasaleemi" target="_blank">Connect with me</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Location</h3>
+                    <p style="color: var(--text-secondary);">Multan, Pakistan</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Working at Grafdom</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Muhammad Hamza Saleemi - Senior Full Stack Developer</p>
+            <p>Specialized in WordPress, Shopify & Custom Web Solutions</p>
+        </div>
+    </footer>
+</body>
+
+</html>

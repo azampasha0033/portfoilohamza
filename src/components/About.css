@@ -1,0 +1,232 @@
+.about {
+    position: relative;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: var(--spacing-2xl);
+    align-items: start;
+}
+
+.about-intro {
+    position: sticky;
+    top: 100px;
+    text-align: center;
+    padding: var(--spacing-2xl);
+}
+
+.about-intro-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    color: white;
+}
+
+.about-intro h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.about-location {
+    color: var(--color-text-tertiary);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.about-bio {
+    text-align: left;
+    margin: var(--spacing-lg) 0;
+    padding: var(--spacing-lg) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+}
+
+.contact-item svg {
+    color: var(--color-accent-purple);
+    flex-shrink: 0;
+}
+
+.about-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3xl);
+}
+
+.experience-section h3,
+.education-section h3 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding-left: var(--spacing-xl);
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--color-accent-purple), var(--color-accent-pink));
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: calc(-1 * var(--spacing-xl) - 6px);
+    top: var(--spacing-lg);
+    width: 14px;
+    height: 14px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    border: 3px solid var(--color-bg-primary);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+}
+
+.timeline-content h4 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text-primary);
+}
+
+.timeline-content .company {
+    color: var(--color-accent-purple);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.timeline-content .period {
+    color: var(--color-text-tertiary);
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-md);
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: var(--radius-sm);
+}
+
+.highlights {
+    list-style: none;
+    margin-top: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.highlights li {
+    position: relative;
+    padding-left: var(--spacing-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.highlights li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-purple);
+    font-size: 1.2rem;
+}
+
+/* Education */
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.education-card {
+    padding: var(--spacing-xl);
+    text-align: center;
+}
+
+.education-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: var(--radius-lg);
+    color: var(--color-accent-purple);
+}
+
+.education-card h4 {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-primary);
+}
+
+.education-card .institution {
+    color: var(--color-accent-purple);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.education-card .period {
+    color: var(--color-text-tertiary);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+    .about-intro {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline {
+        padding-left: var(--spacing-lg);
+    }
+
+    .timeline-marker {
+        left: calc(-1 * var(--spacing-lg) - 6px);
+    }
+
+    .education-grid {
+        grid-template-columns: 1fr;
+    }
+}
