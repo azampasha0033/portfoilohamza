@@ -35,8 +35,8 @@
 .timeline-dot {
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 1.5rem;
+    transform: translateX(-50%);
     width: 24px;
     height: 24px;
     background: linear-gradient(135deg, var(--primary), var(--accent));
@@ -84,12 +84,11 @@
 
 .timeline-date {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    padding-top: 0.75rem;
     color: var(--cyan);
     font-weight: 700;
     font-size: 1.4rem;
-    height: 100%;
 }
 
 /* Responsive */
